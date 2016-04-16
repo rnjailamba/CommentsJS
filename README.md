@@ -1,46 +1,45 @@
-[![NPM](https://nodei.co/npm/permalinkjs.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/permalinkjs)
-[![npm version](https://badge.fury.io/js/permalinkjs.svg)](https://www.npmjs.com/package/permalinkjs)
-<a href="https://www.npmjs.com/package/permalinkjs">
+[![NPM](https://nodei.co/npm/CommentsJS.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/CommentsJS)
+[![npm version](https://badge.fury.io/js/CommentsJS.svg)](https://www.npmjs.com/package/CommentsJS)
+<a href="https://www.npmjs.com/package/CommentsJS">
     <img src="https://img.shields.io/travis/badges/shields.svg"
          alt="build status">
 </a>
-[![npm downloads](https://img.shields.io/npm/dm/permalinkjs.svg?style=flat)](https://www.npmjs.com/package/permalinkjs)
-<a href="http://bower.io/search/?q=permalinkjs">
+[![npm downloads](https://img.shields.io/npm/dm/CommentsJS.svg?style=flat)](https://www.npmjs.com/package/CommentsJS)
+<a href="http://bower.io/search/?q=CommentsJS">
 <img src="http://benschwarz.github.io/bower-badges/badge@2x.png" width="130" height="30">
 </a>       
 
-Permalinks for your html page
+Comments for your html page
 =======================================
 
-Easy creation of permalinks on your html page! [**DEMOS** - http://goo.gl/Qnkn0N http://goo.gl/zEbKel] 
+Easy addition of comments to your html page! [**DEMOS** - http://goo.gl/Qnkn0N http://goo.gl/zEbKel] 
 
 ## Requirements
 
-Just any html page with h1/h2/h3/h4/h5/h6/p/a/blockquote/header/footer/ul/ol tags and PermalinkJS will add permalinks!
+Just any html page and CommentsJS will add a comments system! 
 
 ## Installation
 
 ```shell
-  npm install permalinkjs --save
+  npm install commentsjs --save
 ```
 
 ## After Installation
 
-You will find the permalink.js file in node_modules/permalinkjs/dist/permalink.js.      
-Please include the permalink.js file after including **jQuery**.     
-Please check node_modules/permalinkjs/demo/index.html for a very easy example.    
+You will find the comments.js file in node_modules/commentsjs/dist/permalink.js.      
+You will find the comments.css file in node_modules/commentsjs/dist/permalink.css.      
+Please include the comments.js file after including **jQuery**.     
+Please check node_modules/commentsjs/demo/index.html for a very easy example.    
 Or just copy stuff from here -> https://goo.gl/LDfvWJ
   
 ## Usage - Example 1
 
-Just include the following script tag on your HTML page.( after jquery and permalink.js )        
-All h1,h2,h3,h4,h5,h6,p,a,blockquote,header,footer,ul,ol elements that are direct children of the div with id="element" will get permalinks now.
+Just include the following script tag on your HTML page.( after jquery and comments.js and comments.css)        
 
 ```
 <script>
 	$(document).ready( function() {
-		$( "#element" ).permalink( {
-			tags: "h1,h2,h3,h4,h5,h6,p,a,blockquote,header,footer,ul,ol"
+		$( "#element" ).comments( {
 		} );
 		
 	} );
@@ -48,21 +47,6 @@ All h1,h2,h3,h4,h5,h6,p,a,blockquote,header,footer,ul,ol elements that are direc
 
 ```
 
-## Usage - Example 2
-
-Only h1 elements that are direct children of the div with id="element" will get permalinks now.
-
-```
-<script>
-	$(document).ready( function() {
-		$( "#element" ).permalink( {
-			tags: "h1"
-		} );
-		
-	} );
-</script>
-
-```
 
 ## Tests
 
