@@ -39,8 +39,7 @@ Just include the following script tag on your HTML page.( after jquery and comme
 ```
 <script>
 	$(document).ready( function() {
-		$( "#element" ).comments( {
-		} );
+		$( "#element" ).comments();
 		
 	} );
 </script>

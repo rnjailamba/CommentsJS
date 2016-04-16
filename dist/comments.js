@@ -31,7 +31,6 @@
 			element = $(element);
 			var className = element.attr('class');
 			var idName = element.attr('id');
-			console.log(className,idName);
 			if(typeof className != 'undefined')
 				$('.'+className).append('<div class = "container"> <div class="leave-a-reply"> <span class="title">Leave a Comment</span> <div class="row"> <div class="col-md-12"> <textarea name="comment" id="comment" class="form-control" rows="8" placeholder="Message"></textarea> </div> <div class="col-md-12"> <button type="submit" class="btn-black">Publish Comment</button> </div> </div> </div> <!-- End .leave-a-reply --> <div class="comment"> <span class="title blog-comments">All Comments ( Write something above and click publish to see it here )</span> </div> <!-- End .commnet --></div> <!-- End .container -->');
 			if(typeof idName != 'undefined')
