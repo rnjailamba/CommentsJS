@@ -8,114 +8,14 @@
 // scripts and/or other plugins which may not be closed properly.
 ;( function( $, window, document, undefined ) {
 
-	"use strict";
-
 		// Create the defaults once
-		var pluginName = "CommentsJS",
+		var pluginName = "comments",
 			defaults = {
 				propertyName: "value"
 			};
 		var className = 'anchor';
 		var idcache = {};
 		var count = 0;
-
-		function doDashes(str) {
-		    var re = /[^a-z0-9]+/gi; // global and case insensitive matching of non-char/non-numeric
-		    var re2 = /^-*|-*$/g;     // get rid of any leading/trailing dashes
-		    str = str.replace(re, '-');  // perform the 1st regexp
-		    return str.replace(re2, '').toLowerCase(); // ..aaand the second + return lowercased result
-		}				
-
-		function injectStyles() {
-		var css = ['.anchor {',
-		  'height: 20px;',
-		  'width: 20px;',
-		  'display: block;',
-		  'padding-right: 6px;',
-		  'padding-left: 30px;',
-		  'margin-left: -30px;',
-		  'cursor: pointer;',
-		  'position: absolute;',
-		  'top: 0;',
-		  'left: 0;',
-		  'text-decoration: none;',
-		  'height: 100%;',
-		  'background: transparent;',
-		  'color: #3C4342;',
-		'}',
-		'',
-		'.octicon {',
-		 'visibility: hidden',
-		'}',
-		'h1:hover .octicon{',
-		 'visibility: visible',
-		'}',
-		'h2:hover .octicon{',
-		 'visibility: visible',
-		'}',
-		'h3:hover .octicon{',
-		 'visibility: visible',
-		'}',
-		'h4:hover .octicon{',
-		 'visibility: visible',
-		'}',
-		'h5:hover .octicon{',
-		 'visibility: visible',
-		'}',								
-		'h6:hover .octicon{',
-		 'visibility: visible',
-		'}',	
-		'p:hover .octicon{',
-		 'visibility: visible',
-		'}',	
-		'a:hover .octicon{',
-		 'visibility: visible',
-		'}',		
-		'blockquote:hover .octicon{',
-		 'visibility: visible',
-		'}',		
-		'footer:hover .octicon{',
-		 'visibility: visible',
-		'}',		
-		'header:hover .octicon{',
-		 'visibility: visible',
-		'}',		
-		'ol:hover .octicon{',
-		 'visibility: visible',
-		'}',		
-		'ul:hover .octicon{',
-		 'visibility: visible',
-		'}',																		
-		'path{',
-		'    fill:none;',
-		'    stroke:black;',
-		'    pointer-events:all;',
-		'}',
-		'.anchor:hover {',
-		 'color: #3C4342;',
-		'}',
-		'h1,h2,h3,h4,h5,h6,p,a,blockquote,header,footer,ul,ol { position: relative; }',
-		'',
-		'h1:hover .anchor span:before,',
-		'h2:hover .anchor span:before,',
-		'h3:hover .anchor span:before,',
-		'h4:hover .anchor span:before,',
-		'h5:hover .anchor span:before,',
-		'h6:hover .anchor span:before,',
-		'.anchor  {',
-		  'content: "¶";',
-		  'position: absolute;',
-		  'left: -15px;',
-		  'top: 0;',
-		'}'		
-
-
-		].join('').replace(/\.anchor/g, '.' + className);
-
-		var style = document.createElement('style');
-		style.innerHTML = css;
-		document.head.appendChild(style);
-		}
 
 		// The actual plugin constructor
 		function Plugin ( element, options ) {
@@ -126,46 +26,269 @@
 			this.init(options,element);
 		}
 
+		// Replace element with initial html
+		function addBasicHTML ( element ) {
+			element = $(element);
+			var className = element.attr('class');
+			var idName = element.attr('id');
+			console.log(className,idName);
+			if(typeof className != 'undefined')
+				$('.'+className).append('<div class = "container"> <div class="leave-a-reply"> <span class="title">Leave a Comment</span> <div class="row"> <div class="col-md-12"> <textarea name="comment" id="comment" class="form-control" rows="8" placeholder="Message"></textarea> </div> <div class="col-md-12"> <button type="submit" class="btn-black">Publish Comment</button> </div> </div> </div> <!-- End .leave-a-reply --> <div class="comment"> <span class="title blog-comments">All Comments ( Write something above and click publish to see it here )</span> </div> <!-- End .commnet --></div> <!-- End .container -->');
+			if(typeof idName != 'undefined')
+				$('#'+idName).append('<div class = "container"> <div class="leave-a-reply"> <span class="title">Leave a Comment</span> <div class="row"> <div class="col-md-12"> <textarea name="comment" id="comment" class="form-control" rows="8" placeholder="Message"></textarea> </div> <div class="col-md-12"> <button type="submit" class="btn-black">Publish Comment</button> </div> </div> </div> <!-- End .leave-a-reply --> <div class="comment"> <span class="title blog-comments">All Comments ( Write something above and click publish to see it here )</span> </div> <!-- End .commnet --></div> <!-- End .container -->');
+
+		}
+
+		// Literally get ready for comments
+		function getReadyForComments ( ) {
+
+			/* ======================================
+			     IS ELEMENT OF TYPE 
+			   ====================================== */
+
+			   function isElementType(element,type){
+			      return $(element).is(type);
+			   }
+
+
+			/* ======================================
+			     GET DATE FORMATTED
+			   ====================================== */
+
+			   function getDateFormatted(d){
+
+			    var month = d.getMonth()+1;
+			    var day = d.getDate();
+
+			    return output = d.getFullYear() + '/' +
+			        (month<10 ? '0' : '') + month + '/' +
+			        (day<10 ? '0' : '') + day; 
+			  }  
+
+
+			/* ======================================
+			     CREATE COMMENT REPLY
+			   ====================================== */
+			    function createCommentReply(){
+
+			      var outerMostDiv = $('<div>')
+			                              .attr("class", "leave-a-reply-to-comment");      
+			      var outerDiv = $('<div>')
+			                          .attr("class", "row");
+			      var form = $('<form>')
+			                        .attr({ action:"#", method:"POST" });
+			      var textArea = $('<textarea>')
+			                          .attr({ name:"comment", id:"comment" , class:"form-control" , rows:"8" , placeholder:"message" });
+			      var button = $('<button>')
+			                          .attr({ type:"submit", id:"class" , class:"btn-black" })
+			                          .text('Reply to Comment');
+			      var divButtonText =  $('<div>')
+			                                .attr("class", "col-md-12");
+
+			      form.append(divButtonText.append(textArea));                                             
+			      form.append(divButtonText.append(button));  
+			      return outerMostDiv.append(outerDiv.append(form));                                          
+
+			    }
+
+			    
+			/* ======================================
+			     CREATE COMMENT WITH MARGIN
+			   ====================================== */
+			    function createCommentWithMargin(data){
+			      var marginLeft = parseInt($( data.aboveElement ).css( "margin-left" ));   
+			      var isElementSpan = isElementType(data.aboveElement,"span"); //true or false
+			      if(isElementSpan)
+			        marginLeft = -60;
+			      var params = {};
+			      params.marginLeft = marginLeft;
+			      return createComment(data,params);
+
+			    }    
+
+
+			/* ======================================
+			     CREATE COMMENT 
+			   ====================================== */
+			    function createComment(data,params){
+
+			      var outerMostDiv = $('<div>')
+			                              .attr("class", "comment-wrap")   
+			                              .css("margin-left",params.marginLeft+60);                                             
+
+			      var commentDiv = $('<div>')
+			                              .attr("class", "full-comment");
+			      var commentHeading = $('<h5>');
+			      var commentHeadingLink = $('<a>')
+			                                  .attr("href", "#")
+			                                  .text("Your Comment");   
+			      var commentSpan = $('<a>')
+			                            .attr("class", "date")
+			                            .text(getDateFormatted(new Date()));     
+			      var commentParagraph = $('<p>')
+			                            .text(String(data.commentText));  
+			      var commentReplyDiv = $('<div>')
+			                                .attr("class", "reply");
+			      var commentReplyLink = $('<a>')
+			                                  .attr({ class:"btn-white-sm", href:"#" })
+			                                  .text("Reply");  
+			      var showMoreReplyDiv = $('<div>')
+			                                .attr("class", "show-reply");                                  
+			      var showMoreReplyLink = $('<a>')
+			                                  .attr({ class:"btn-white-sm", href:"#" })
+			                                  .text("Show replies");                                    
+
+			      commentHeadingLink.css("color","red"); // Just to show dynamically that it is new
+
+			      commentReplyDiv.append(commentReplyLink);    
+			      commentDiv.append(commentHeading.append(commentHeadingLink));    
+			      commentDiv.append(commentSpan);    
+			      commentDiv.append(commentParagraph);    
+			      commentDiv.append(commentReplyDiv);    
+			    
+			      outerMostDiv.append(commentDiv);
+
+			      return outerMostDiv;                                          
+
+			    }    
+
+			    //CHECK INPUT TEXT FIELD EMPTY
+			    // ==============================================
+			    function checkInputTextFieldEmpty(element){
+			      var myfield = $(element).val();
+			      if(myfield.length == 0){
+			        return true;  
+			      }
+			      else{
+			        return false; 
+			      }
+
+			    }
+
+
+			  /* ======================================
+			       REMOVE THE COMMENT BOX
+			     ====================================== */
+			      function removeCommentBox(){
+
+			        $( ".comment .leave-a-reply-to-comment" ).remove( );                                     
+
+			      }
+
+
+			  /* ======================================
+			       REMOVE TOP LEVEL PUBLISH COMMENT TEXT
+			     ====================================== */
+			      function removeTextTopLevel(){
+
+			        var x = $('.leave-a-reply').find('#comment').val('');                          
+
+			      }  
+
+
+			  /* ======================================
+			       CHECK BLOGID = PARENTID
+			     ====================================== */
+			      function checkBlogidParentid(data){
+
+			        if( data.blogId == data.parentId) return true;
+			        else return false                      
+
+			      }      
+
+
+			  /* ======================================
+			       ADD ELEMENT DYNAMICALLY - AFTER CLICK CALL
+			     ====================================== */
+			      function addCommentDynamically(data){
+			        var comment =  createCommentWithMargin(data);
+			        $( comment ).insertAfter(data.aboveElement);
+			        removeCommentBox();
+			        removeTextTopLevel();
+			        $('html, body').animate({
+			          scrollTop: (data.aboveElement).offset().top -85
+			        }, 500);
+			      }    
+			$( document ).ready(function() {
+
+
+			/* ======================================
+			     ON CLICKING TOP LEVEL PUBLISH COMMENT
+			   ====================================== */
+			   $(document).on('click','div.leave-a-reply .btn-black',function(){
+
+			    event.preventDefault();
+			    var textAreaElement = $(this).parents('.leave-a-reply').find('#comment');
+			    var checkComment = checkInputTextFieldEmpty(textAreaElement);
+			    if( !checkComment ){
+			      var commentData = {};
+			      commentData.commentText =textAreaElement.val();
+			      commentData.aboveElement = $('.blog-comments');
+			      addCommentDynamically(commentData);
+			    }
+			    else{
+			      alert("enter something")
+			      
+			    }     
+
+			  });
+
+
+			/* ======================================
+			     ON CLICKING OTHER LEVEL PUBLISH COMMENT
+			   ====================================== */
+			   $(document).on('click','div.comment .btn-black',function(){
+
+			    event.preventDefault();
+			    var textAreaElement = $(this).parents('.leave-a-reply-to-comment').find('#comment');
+			    var checkComment = checkInputTextFieldEmpty(textAreaElement);
+			    if( !checkComment ){
+			      var commentData = {};
+			      commentData.commentText = textAreaElement.val();
+			      commentData.aboveElement = $(this).parents('.leave-a-reply-to-comment')
+			                                        .prevAll(".comment-wrap:first"); 
+			      commentData.parentId = commentData.aboveElement.attr("data-commentId");                                        
+			      addCommentDynamically(commentData);
+			    }
+			    else{
+			      alert("nothing written");
+			    }
+
+			  });
+
+
+			/* ======================================
+			     ON CLICKING OTHER REPLIES - ONLY THE INTENT - SO THIS WILL CREATE THE REPLY BOX
+			   ====================================== */
+			   $(document).on('click','div.comment-wrap .reply',function(){
+			    event.preventDefault();
+			    var topCommentDiv = $(this).parents('.comment-wrap');
+			    var commentReply = createCommentReply();
+			    var isCommentBoxOpen = $( ".comment" ).has( ".leave-a-reply-to-comment" ).length;
+			    var isCommentBoxOpenAfterCurrentElement = $( topCommentDiv ).next().hasClass("leave-a-reply-to-comment");
+			    if( isCommentBoxOpen > 0 ){
+			      removeCommentBox();
+			    }
+			    if( isCommentBoxOpen == 0 || isCommentBoxOpenAfterCurrentElement == 0 ){
+			      $( commentReply ).insertAfter(topCommentDiv);
+			      $( commentReply ).find("#comment").focus();
+			    }
+			    $('html, body').animate({
+			          scrollTop: topCommentDiv.offset().top -85
+			        }, 500);
+			  });      
+
+			});
+
+
+		}				
+
 		$.extend( Plugin.prototype, {
 			init: function(options,element) {
-				console.log(options.tags);
+				addBasicHTML(element);
+				getReadyForComments();
+			}	
 
-				this.addPermalinks(options.tags,element);
-				this.addCSS();
-				this.addScrollToTop();
-			},
-			addPermalinks: function(options,element){
-				var anchor = document.createElement('a');
-			    anchor.className = className;
-			    anchor.innerHTML = '<svg aria-hidden="true" class="octicon octicon-link" height="16" role="img" version="1.1" viewBox="0 0 16 16" width="16"><path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path></svg>';
-
-				var x = $(element).children(options).each(function () {
-				    if (!this.id) {
-						var id = doDashes(this.textContent||this.innerText);
-						if (idcache[id]) {
-						  	id = id + '-' + count;
-						}
-						this.id = id;
-						idcache[id] = 1;
-					}
-					var clone = anchor.cloneNode(true);
-					clone.href = '#' + this.id;
-					this.insertBefore(clone, this.firstChild);
-					count = count + 1;					
-				});
-			},
-			addCSS: function( text ) {
-				// add the css to the page	
-				injectStyles(); 				
-			},
-			addScrollToTop: function( text ) {
-				// on anchor click to to top
-				$(".anchor").click(function() {
-				    $('html, body').animate({
-				        scrollTop: $(this).offset().top
-				    }, 0);
-				});						
-			}			
 		} );
 
 		// A really lightweight plugin wrapper around the constructor,

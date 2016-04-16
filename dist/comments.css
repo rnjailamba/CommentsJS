@@ -1,0 +1,146 @@
+.container h1, .container h2, .container h4, .container a, .container span {
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+}
+.container a, button {
+    color: #000000;
+    -webkit-transition: all 0.15s linear;
+    -moz-transition: all 0.15s linear;
+    -o-transition: all 0.15s linear;
+    text-decoration: none;
+    transition: all 0.15s linear;
+}
+
+.container a:hover, .container a:focus {
+    color: #7C7C7C;
+    text-decoration: none;
+}
+.container p {
+    font-family: 'Droid Sans', sans-serif;
+    font-size: 13px;
+    line-height: 30px;
+    letter-spacing: 1px;
+    color: #7c7c7c;
+    margin-bottom: 20px;
+}
+.container h5 {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.container input, .container textarea {
+    border: 1px solid #000000;
+    width: 100%;
+}
+.container{
+    width: 60%;
+    margin: auto;
+    font-size: 14px;
+    font-weight: normal;    
+}
+.line {
+    height: 1px;
+    width: 100%;
+    margin: 10px 0;
+    background: #e5e5e5;
+}
+.btn-black {
+    font-size: 16px;
+    background: #000000;
+    display: inline-block;
+    padding: 12px 20px;
+    color: white;
+    letter-spacing: 4px;
+    border: 1px solid #000000;
+    text-transform: uppercase;
+}
+.btn-black:hover {
+    border: 1px solid #000000;
+    background: transparent;
+    color: #000000;
+}
+.btn-white {
+    font-size: 16px;
+    display: inline-block;
+    padding: 12px 20px;
+    color: #000000;
+    letter-spacing: 4px;
+    border: 1px solid #000000;
+    text-transform: uppercase;
+}
+.btn-white:hover {
+    border: 1px solid #000000;
+    background: #000000;
+    color: #ffffff;
+}
+.btn-white-sm {
+    font-size: 12px;
+    display: inline-block;
+    padding: 5px 10px;
+    margin-right: 10px;
+    color: #000000;
+    letter-spacing: 1px;
+    border: 1px solid #000000;
+}
+.btn-white-sm:hover {
+    border: 1px solid #000000;
+    background: #000000;
+    color: #ffffff;
+}
+.right-align {
+    float: right;
+    margin: 5px 0px 20px 20px;
+}
+.left-align {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+.image-thumbnail {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+}
+.blog-comment {
+    margin-top: 100px;
+}
+.comment .title,
+.leave-a-reply .title {
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    color: #000;
+    display: block;
+    margin-bottom: 60px;
+}
+.comment-wrap {
+    border-bottom: 1px solid #e5e5e5;
+    position: relative;
+    margin-top: 50px;
+    padding-bottom: 20px;
+}
+.comment-wrap .date {
+    margin: 10px 0;
+    font-size: 11px;
+}
+.comment-wrap p {
+    margin: 20px 0;
+    line-height: 24px;
+}
+
+.reply-comment {
+    margin-left: 60px;
+}
+.leave-a-reply {
+    margin: 100px 0;
+}
+.leave-a-reply .title {
+    margin-bottom: 30px;
+}
+.leave-a-reply input,
+.leave-a-reply textarea {
+    margin-bottom: 30px;
+    width:100%;
+}
+.leave-a-reply button {
+    font-size: 13px;
+}
