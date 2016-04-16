@@ -21,7 +21,7 @@ Just any html page and CommentsJS will add a comments system!
 ## Installation
 
 ```shell
-  npm install commentsjs --save
+  npm install CommentsJS --save
 ```
 
 ## After Installation
