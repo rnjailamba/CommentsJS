@@ -30,7 +30,7 @@ You will find the comments.js file in node_modules/commentsjs/dist/permalink.js.
 You will find the comments.css file in node_modules/commentsjs/dist/permalink.css.      
 Please include the comments.js file after including **jQuery**.     
 Please check node_modules/commentsjs/demo/index.html for a very easy example.    
-Or just copy stuff from here -> https://goo.gl/LDfvWJ
+Or just copy stuff from here -> https://goo.gl/hhMTfZ
   
 ## Usage - Example 1
 

@@ -1,6 +1,6 @@
 {
   "name": "CommentsJS",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "Easy creation of nested comments system on your web page!",
   "main": "main.js",
   "dependencies": {},
