@@ -1,0 +1,34 @@
+{
+  "name": "CommentsJS",
+  "license": "MIT",
+  "authors": [
+    "Rnjai Lamba <rnjailamba12@gmail.com>"
+  ],
+  "description": "Easy creation of nested comments system on your web page!",
+  "homepage": "https://github.com/rnjailamba/CommentsJS",
+  "keywords": [
+    "jquery-plugin",
+    "ecosystem:jquery",
+    "comments",
+    "comment",
+    "nested comments",
+    "comment system"
+  ],
+    "version": "0.0.1",
+    "main": "dist/comments.js",
+    "ignore": [
+        "source",
+        "spec",
+        ".bowerrc",
+        ".gitignore",
+        ".jshintignore",
+        ".jshintrc",
+        "bower.json",
+        "gruntfile.js",
+        "package.json",
+        "README.md"
+    ], 
+  "moduleType": [
+    "es6"
+  ]
+}

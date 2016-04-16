@@ -1,0 +1,59 @@
+{
+  "name": "CommentsJS",
+  "version": "0.0.1",
+  "description": "Easy creation of nested comments system on your web page!",
+  "main": "main.js",
+  "dependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+"repository": {
+    "type": "git",
+    "url": "git+https://github.com/rnjailamba/CommentsJS.git"
+  },
+  "keywords": [
+    "jquery-plugin",
+    "ecosystem:jquery",
+    "comments",
+    "comment",
+    "nested comments",
+    "comment system"
+  ],
+  "author": {
+      "name": "Rnjai Lamba",
+      "email": "rnjailamba@gmail.com",
+      "url": "https://github.com/rnjailamba"
+  },
+  "contributors": [
+    {
+      "name": "Rnjai Lamba",
+      "email": "rnjailamba@gmail.com",
+      "url": "https://github.com/rnjailamba"
+    }
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "jquery": ">=1.5.1"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-coffee": "^0.13.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-uglify": "^0.9.2",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-jscs": "^2.7.0",
+    "grunt-karma": "^0.12.0",
+    "jscs": "^2.10.1",
+    "karma": "^0.13.21",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "karma-qunit": "^0.1.5",
+    "phantomjs": "^1.9.18",
+    "qunitjs": "^1.19.0"
+  },
+  "scripts": {
+    "jscs": "jscs src",
+    "test": "npm run jscs && grunt travis --verbose"
+  }
+}
