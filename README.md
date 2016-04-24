@@ -1,27 +1,27 @@
-[![NPM](https://nodei.co/npm/CommentsJS.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/CommentsJS)
-[![npm version](https://badge.fury.io/js/CommentsJS.svg)](https://www.npmjs.com/package/CommentsJS)
-<a href="https://www.npmjs.com/package/CommentsJS">
+[![NPM](https://nodei.co/npm/commentsjs.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/commentsjs)
+[![npm version](https://badge.fury.io/js/commentsjs.svg)](https://www.npmjs.com/package/commentsjs)
+<a href="https://www.npmjs.com/package/commentsjs">
     <img src="https://img.shields.io/travis/badges/shields.svg"
          alt="build status">
 </a>
-[![npm downloads](https://img.shields.io/npm/dm/CommentsJS.svg?style=flat)](https://www.npmjs.com/package/CommentsJS)
-<a href="http://bower.io/search/?q=CommentsJS">
+[![npm downloads](https://img.shields.io/npm/dm/commentsjs.svg?style=flat)](https://www.npmjs.com/package/commentsjs)
+<a href="http://bower.io/search/?q=commentsjs">
 <img src="http://benschwarz.github.io/bower-badges/badge@2x.png" width="130" height="30">
 </a>       
 
 Comments for your html page
 =======================================
 
-Easy addition of comments to your html page! [**DEMO** - http://rnjailamba.github.io/CommentsJS/demo] 
+Easy addition of comments to your html page! [**DEMO** - http://rnjailamba.github.io/commentsjs/demo] 
 
 ## Requirements
 
-Just any html page and CommentsJS will add a comments system! 
+Just any html page and commentsjs will add a comments system! 
 
 ## Installation
 
 ```shell
-  npm install CommentsJS --save
+  npm install commentsjs --save
 ```
 
 ## After Installation
