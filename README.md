@@ -12,7 +12,7 @@
 Comments for your html page
 =======================================
 
-Easy addition of comments to your html page! [**DEMO** - http://rnjailamba.github.io/commentsjs/demo] 
+Easy addition of comments to your html page! [**DEMO** - http://rnjailamba.github.io/CommentsJS/demo] 
 
 ## Requirements
 
