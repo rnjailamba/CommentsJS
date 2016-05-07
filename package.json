@@ -1,7 +1,7 @@
 {
   "name": "commentsjs",
-  "version": "0.0.8",
-  "description": "Easy creation of nested comments system on your web page!",
+  "version": "0.1.0",
+  "description": "Easy creation of nested comments javascript/jquery system on your web page!",
   "main": "main.js",
   "dependencies": {},
   "scripts": {
